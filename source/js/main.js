@@ -109,3 +109,98 @@ function init() {
 }
 
 
+const blockItem = document.querySelectorAll(`.block__item`)
+const readyAnswers = new Map();
+const firstBlock = document.querySelector(`.first-block`).querySelectorAll(`.block__item`);
+const secondBlock = document.querySelector(`.second-block`).querySelectorAll(`.block__item`);
+const thirdBlock = document.querySelector(`.third-block`).querySelectorAll(`.block__item`);
+const fourthBlock = document.querySelector(`.fourth-block`).querySelectorAll(`.block__item`);
+const fifthBlock = document.querySelector(`.fifth-block`).querySelectorAll(`.block__item`);
+const sixthBlock = document.querySelector(`.sixth-block`).querySelectorAll(`.block__item`);
+const firstBlockYes = new Map();
+const secondBlockYes = new Map();
+const thirdBlockYes = new Map();
+const fourthBlockYes = new Map();
+const fifthBlockYes = new Map();
+const sixthBlockYes = new Map();
+let showFirstBlock = false;
+let showSecondBlock = false;
+let showThirdBlock = false;
+let showFourthBlock = false;
+let showFifthBlock = false;
+let showSixthBlock = false;
+for (let i = 0; i < blockItem.length; ++i) {
+  blockItem[i].addEventListener(`change`, (evt) => {
+    readyAnswers.set(evt.target.name, evt.target.value);
+    document.querySelector(`.answers__count`).textContent = readyAnswers.size;
+    console.log(readyAnswers);
+    if (readyAnswers.size === 30) {
+      document.querySelector(`.send-answers__btn`).removeAttribute(`disabled`)
+    }
+  })
+}
+for (let i = 0; i < firstBlock.length; ++i) {
+  firstBlock[i].addEventListener(`change`, (evt) => {
+    firstBlockYes.set(evt.target.name, evt.target.value);
+    const yesArray = Array.from(firstBlockYes.values()).filter((it) => it === `yes`);
+    showFirstBlock = yesArray.length >= 3 ? true : false;
+  })
+}
+for (let i = 0; i < secondBlock.length; ++i) {
+  secondBlock[i].addEventListener(`change`, (evt) => {
+    secondBlockYes.set(evt.target.name, evt.target.value);
+    const yesArray = Array.from(secondBlockYes.values()).filter((it) => it === `yes`);
+    showSecondBlock = yesArray.length >= 3 ? true : false;
+  })
+}
+for (let i = 0; i < thirdBlock.length; ++i) {
+  thirdBlock[i].addEventListener(`change`, (evt) => {
+    thirdBlockYes.set(evt.target.name, evt.target.value);
+    const yesArray = Array.from(thirdBlockYes.values()).filter((it) => it === `yes`);
+    showThirdBlock = yesArray.length >= 3 ? true : false;
+  })
+}
+for (let i = 0; i < fourthBlock.length; ++i) {
+  fourthBlock[i].addEventListener(`change`, (evt) => {
+    fourthBlockYes.set(evt.target.name, evt.target.value);
+    const yesArray = Array.from(fourthBlockYes.values()).filter((it) => it === `yes`);
+    showFourthBlock = yesArray.length >= 3 ? true : false;
+  })
+}
+for (let i = 0; i < fifthBlock.length; ++i) {
+  fifthBlock[i].addEventListener(`change`, (evt) => {
+    fifthBlockYes.set(evt.target.name, evt.target.value);
+    const yesArray = Array.from(fifthBlockYes.values()).filter((it) => it === `yes`);
+    showFifthBlock = yesArray.length >= 3 ? true : false;
+  })
+}
+for (let i = 0; i < sixthBlock.length; ++i) {
+  sixthBlock[i].addEventListener(`change`, (evt) => {
+    sixthBlockYes.set(evt.target.name, evt.target.value);
+    const yesArray = Array.from(sixthBlockYes.values()).filter((it) => it === `yes`);
+    showSixthBlock = yesArray.length >= 3 ? true : false;
+  })
+}
+
+document.querySelector(`.send-answers__btn`).addEventListener(`click`, () => {
+  if (showFirstBlock) {
+    document.querySelector(`.type-visual`).classList.toggle(`visually-hidden`, false);
+  }
+  if (showSecondBlock) {
+    document.querySelector(`.type-logic`).classList.toggle(`visually-hidden`, false);
+  }
+  if (showThirdBlock) {
+    document.querySelector(`.type-verbal`).classList.toggle(`visually-hidden`, false);
+  }
+  if (showFourthBlock) {
+    document.querySelector(`.type-audio`).classList.toggle(`visually-hidden`, false);
+  }
+  if (showFifthBlock) {
+    document.querySelector(`.type-physic`).classList.toggle(`visually-hidden`, false);
+  }
+  if (showSixthBlock) {
+    document.querySelector(`.type-social`).classList.toggle(`visually-hidden`, false);
+  }
+})
+
+
