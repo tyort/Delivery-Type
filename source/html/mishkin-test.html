@@ -28,7 +28,10 @@
         <label>Нет<input type="radio" name="scheme-love" value="no"></label>
       </li>
     </ul>
-    <p class="total__result">ИТОГО ответов Да</p>
+    <div class="total__result">
+      <label>ИТОГО ответов Да</label>
+      <input type="number" value="0" readonly>
+    </div>
   </div>
 
   <div class="question__bloсk second-block">
@@ -60,7 +63,10 @@
         <label>Нет<input type="radio" name="sudoku-love" value="no"></label>
       </li>
     </ul>
-    <p class="total__result">ИТОГО ответов Да</p>
+    <div class="total__result">
+      <label>ИТОГО ответов Да</label>
+      <input type="number" value="0" readonly>
+    </div>
   </div>
 
   <div class="question__bloсk third-block">
@@ -92,7 +98,10 @@
         <label>Нет<input type="radio" name="explain" value="no"></label>
       </li>
     </ul>
-    <p class="total__result">ИТОГО ответов Да</p>
+    <div class="total__result">
+      <label>ИТОГО ответов Да</label>
+      <input type="number" value="0" readonly>
+    </div>
   </div>
 
   <div class="question__bloсk fourth-block">
@@ -124,7 +133,10 @@
         <label>Нет<input type="radio" name="fon-music" value="no"></label>
       </li>
     </ul>
-    <p class="total__result">ИТОГО ответов Да</p>
+    <div class="total__result">
+      <label>ИТОГО ответов Да</label>
+      <input type="number" value="0" readonly>
+    </div>
   </div>
 
   <div class="question__bloсk fifth-block">
@@ -156,7 +168,10 @@
         <label>Нет<input type="radio" name="nagruzka" value="no"></label>
       </li>
     </ul>
-    <p class="total__result">ИТОГО ответов Да</p>
+    <div class="total__result">
+      <label>ИТОГО ответов Да</label>
+      <input type="number" value="0" readonly>
+    </div>
   </div>
   
   <div class="question__bloсk sixth-block">
@@ -188,47 +203,55 @@
         <label>Нет<input type="radio" name="friend" value="no"></label>
       </li>
     </ul>
+    <div class="total__result">
+      <label>ИТОГО ответов Да</label>
+      <input type="number" value="0" readonly>
+    </div>
   </div>
-  <p>Ребенок ответил на <span class="answers__count"></span> вопросов</p>
-  <p>Из них количество "ДА" <span class="answers__count-yes"></span></p>
   <button class="send-answers__btn" disabled>Отправить</button>
 </div>
 
-<div class="type-visual visually-hidden">
-  <p>Ваш тип - Визуальный!</p>
-  <p>У визулов развито пространственное мышление,они любят рисовать и часто делают наброски во</p>
-  <p>время занятий, используют картинки, интеллект карты и диаграммы для упорядочения информации</p>
-  <p>и планировании задач, а так же, цветовую маркировку для разных тем.fgklgfkgkglglgblgl;glglglglglglbllgs</p>
-</div>
+<div class="type-description visually-hidden">
+  <div class="type-visual visually-hidden">
+    <p>Ваш тип - Визуальный!</p>
+    <p>У визулов развито пространственное мышление,они любят рисовать и часто делают наброски во
+    время занятий, используют картинки, интеллект карты и диаграммы для упорядочения информации
+    и планировании задач, а так же, цветовую маркировку для разных тем.</p>
+  </div>
 
-<div class="type-logic visually-hidden">
-  <p>;Ваш тип - Логический</p>
-  <p>Эти дети хорошо успевают по математике и решают задачи, следуя логике. Они видят модели и</p>
-  <p>взаимосвязи и способны группировать родственную информацию. Они составляют списки</p>
-  <p>дел в порядке важности и срочности.</p>
-</div>
+  <div class="type-logic visually-hidden">
+    <p>Ваш тип - Логический!</p>
+    <p>Эти дети хорошо успевают по математике и решают задачи, следуя логике. Они видят модели и
+    взаимосвязи и способны группировать родственную информацию. Они составляют списки
+    дел в порядке важности и срочности.</p>
+  </div>
 
-<div class="type-verbal visually-hidden">
-  <p>Ваш тип - Вербальный</p>
-  <p>Таким ученикам комфортно выражать свои мысли с помощью устной и письменной речи. Они читают</p>
-  <p>запоем, обладают богатым словарным запасом. В их случае хорошие результаты дает использование</p>
-  <p>устной речи, письма, ритма и рифмы.</p>
-</div>
+  <div class="type-verbal visually-hidden">
+    <p>Ваш тип - Вербальный!</p>
+    <p>Таким ученикам комфортно выражать свои мысли с помощью устной и письменной речи. Они читают
+    запоем, обладают богатым словарным запасом. В их случае хорошие результаты дает использование
+    устной речи, письма, ритма и рифмы.</p>
+  </div>
 
-<div class="type-audio visually-hidden">
-  <p>Ваш тип - Аудиальный</p>
-  <p>Чаще всего такие ученики играют на музыкальном инструменте и любят петь. Они лучше усваивают</p>
-  <p>информацию на лекциях и из аудиозаписей, активно слушая и участвуя в обсуждениях. Аудиалы</p>
-  <p>любят использовать звук, музыку, ритм и рифму.</p>
-</div>
+  <div class="type-audio visually-hidden">
+    <p>Ваш тип - Аудиальный!</p>
+    <p>Чаще всего такие ученики играют на музыкальном инструменте и любят петь. Они лучше усваивают
+    информацию на лекциях и из аудиозаписей, активно слушая и участвуя в обсуждениях. Аудиалы
+    любят использовать звук, музыку, ритм и рифму.</p>
+  </div>
 
-<div class="type-physic visually-hidden">
-  <p>Ваш тип - Физический</p>
-  <p>Эти дети любят действовать и обдумывают задачи в движении. Чтобы узнать, как вещь работает,</p>
-  <p>кинестетики обычно сначала разбирают ее на части, а затем читают инструкцию.</p>
-</div>
+  <div class="type-physic visually-hidden">
+    <p>Ваш тип - Физический!</p>
+    <p>Эти дети любят действовать и обдумывают задачи в движении. Чтобы узнать, как вещь работает,
+    кинестетики обычно сначала разбирают ее на части, а затем читают инструкцию.</p>
+  </div>
 
-<div class="type-social visually-hidden">
-  <p>Ваш тип - Социальный</p>
-  <p>Эти дети - негры</p>
+  <div class="type-social visually-hidden">
+    <p>Ваш тип - Социальный!</p>
+    <p>Если у тебя мало положительных ответов в блоке вопросов о социальном типе, то скорее
+    всего тебе лучше заниматься в одиночку, в том смысле, что результаты твоей работы будут
+    более эффективны и качественны. Большинство людей имеют 4 разных типа. Кроме того, стиль 
+    обучения зависит и от типа задания, которое ты выполняешь. Попробуйте разные стили и 
+    выбирайте наиболее подходящие для конкретного задания</p>
+  </div>
 </div>
