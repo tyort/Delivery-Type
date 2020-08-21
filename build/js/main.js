@@ -1,37 +1,47 @@
-(function (Inputmask) {
+(function () {
   'use strict';
-
-  Inputmask = Inputmask && Object.prototype.hasOwnProperty.call(Inputmask, 'default') ? Inputmask['default'] : Inputmask;
 
   const pageDelivery = document.querySelector(`.page-delivery`);
   const form = pageDelivery.querySelector(`form`);
   const username = form.querySelector(`#block-name`);
   const phone = form.querySelector(`#block-phone`);
   const address = form.querySelector(`#block-address`);
-  const comment = form.querySelector(`#block-comment`);
 
-  const inputMask = new Inputmask(`+7 (___) ___-__-__`);
-  inputMask.mask(phone);
+  window.$(document).ready(() => {
+    window.$(phone).mask(`+7 (999) 999-99-99`);
+  });
 
-  console.log(inputMask);
 
-  form.addEventListener(`input`, (evt) => {
+  form.addEventListener(`submit`, (evt) => {
     evt.preventDefault();
     checkInputs();
   });
 
   function checkInputs() {
-    const nameSample = /^[а-яА-ЯёЁ-]+$/u;
+    const phoneSample = /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/u;
+    const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
+    const addressSample = /^.{1,100}$/u;
 
     const usernameValue = username.value.trim();
     const phoneValue = phone.value.trim();
     const addressValue = address.value.trim();
-    const commentValue = comment.value.trim();
 
     if (!nameSample.test(usernameValue)) {
       setErrorView(username);
     } else {
       setSuccessView(username);
+    }
+
+    if (!phoneSample.test(phoneValue)) {
+      setErrorView(phone);
+    } else {
+      setSuccessView(phone);
+    }
+
+    if (!addressSample.test(addressValue)) {
+      setErrorView(address);
+    } else {
+      setSuccessView(address);
     }
   }
 
@@ -109,6 +119,6 @@
   // .add(myPlacemark);
   //
 
-}(Inputmask));
+}());
 
 //# sourceMappingURL=main.js.map

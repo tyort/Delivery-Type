@@ -16,7 +16,6 @@ const del = require(`del`);
 const rollup = require(`gulp-better-rollup`);
 const resolve = require(`rollup-plugin-node-resolve`);
 const commonjs = require(`rollup-plugin-commonjs`);
-const Inputmask = require(`inputmask`);
 
 gulp.task(`css`, function () {
   return gulp

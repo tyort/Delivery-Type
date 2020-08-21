@@ -1,5 +1,7 @@
-import $ from "jquery";
-window.$ = $;
+import jQuery from "jquery";
+window.jQuery = window.$ = jQuery;
+
+import '../../node_modules/jquery.maskedinput/src/jquery.maskedinput.js';
 
 
 const yandexMapsScript = document.createElement(`script`);

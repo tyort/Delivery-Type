@@ -57,6 +57,7 @@
     "decimal.js": "^10.2.0",
     "del": "^4.1.1",
     "gulp-concat": "^2.6.1",
+    "inputmask": "^5.0.5",
     "jquery": "3.5.1",
     "jquery.maskedinput": "^1.4.1",
     "just-validate": "^1.5.0",
