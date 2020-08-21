@@ -30,23 +30,6 @@
   padding-bottom: 20px;
 }
 
-.form-control::before {
-  position: absolute;
-  content: '';
-  width: 22px;
-  height: 22px;
-  top: 0;
-  right: 0;
-  background: url(../img/exclamation.svg) center no-repeat;
-  background-size: contain;
-  visibility: hidden;
-}
-
-.form-control.error::before {
-  visibility: visible;
-}
-
-
 .form-control label {
   margin-bottom: 20px;
 }
@@ -72,7 +55,16 @@
   color: #F12828;
 }
 
-.form-control.error p {
+.form-control input:invalid:not(:focus):not(:placeholder-shown) + p {
+  visibility: visible;
+}
+
+.form-control .form-control__img {
+  position: absolute;
+  visibility: hidden;
+}
+
+.form-control input:invalid:not(:focus):not(:placeholder-shown) ~ .form-control__img {
   visibility: visible;
 }
 

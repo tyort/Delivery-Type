@@ -12,49 +12,31 @@
   });
 
 
-  form.addEventListener(`submit`, (evt) => {
+  form.addEventListener(`input`, (evt) => {
     evt.preventDefault();
-    checkInputs();
-  });
 
-  function checkInputs() {
-    const phoneSample = /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/u;
     const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
     const addressSample = /^.{1,100}$/u;
 
-    const usernameValue = username.value.trim();
-    const phoneValue = phone.value.trim();
-    const addressValue = address.value.trim();
+    checkInputValidity(username, nameSample, `Скажи, как зовут то ?)`);
+    checkInputValidity(address, addressSample, `Спорим, угадаю где живешь ?)`);
+  });
 
-    if (!nameSample.test(usernameValue)) {
-      setErrorView(username);
-    } else {
-      setSuccessView(username);
-    }
+  form.addEventListener(`submit`, (evt) => {
+    evt.preventDefault();
+    console.log(`я засабмитился`);
+  });
 
-    if (!phoneSample.test(phoneValue)) {
-      setErrorView(phone);
-    } else {
-      setSuccessView(phone);
-    }
+  function checkInputValidity(inputName, sample, message) {
+    const value = inputName.value.trim();
 
-    if (!addressSample.test(addressValue)) {
-      setErrorView(address);
+    if (!sample.test(value)) {
+      inputName.setCustomValidity(message);
+
     } else {
-      setSuccessView(address);
+      inputName.setCustomValidity(``);
     }
   }
-
-  function setErrorView(input) {
-    const formControl = input.parentElement;
-    formControl.classList.toggle(`error`, true);
-  }
-
-  function setSuccessView(input) {
-    const formControl = input.parentElement;
-    formControl.classList.toggle(`error`, false);
-  }
-
 
   // form.addEventListener(`input`, (evt) => {
   //   const phoneSample = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
