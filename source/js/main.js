@@ -1,9 +1,16 @@
+import Inputmask from "inputmask";
+
 const pageDelivery = document.querySelector(`.page-delivery`);
 const form = pageDelivery.querySelector(`form`);
 const username = form.querySelector(`#block-name`);
 const phone = form.querySelector(`#block-phone`);
 const address = form.querySelector(`#block-address`);
 const comment = form.querySelector(`#block-comment`);
+
+const inputMask = new Inputmask(`+7 (___) ___-__-__`);
+inputMask.mask(phone);
+
+console.log(inputMask);
 
 form.addEventListener(`input`, (evt) => {
   evt.preventDefault();
@@ -22,10 +29,8 @@ function checkInputs() {
 
   if (!nameSample.test(usernameValue)) {
     setErrorView(username);
-    console.log(`hi low`);
   } else {
     setSuccessView(username);
-    console.log(`hi low now`);
   }
 }
 
@@ -100,7 +105,6 @@ function setSuccessView(input) {
 //   });
 
 //   myMap.geoObjects
-//       .add(myPlacemark);
-// }
-
+// .add(myPlacemark);
+//
 

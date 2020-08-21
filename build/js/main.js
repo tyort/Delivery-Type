@@ -1,5 +1,7 @@
-(function () {
+(function (Inputmask) {
   'use strict';
+
+  Inputmask = Inputmask && Object.prototype.hasOwnProperty.call(Inputmask, 'default') ? Inputmask['default'] : Inputmask;
 
   const pageDelivery = document.querySelector(`.page-delivery`);
   const form = pageDelivery.querySelector(`form`);
@@ -7,6 +9,11 @@
   const phone = form.querySelector(`#block-phone`);
   const address = form.querySelector(`#block-address`);
   const comment = form.querySelector(`#block-comment`);
+
+  const inputMask = new Inputmask(`+7 (___) ___-__-__`);
+  inputMask.mask(phone);
+
+  console.log(inputMask);
 
   form.addEventListener(`input`, (evt) => {
     evt.preventDefault();
@@ -23,10 +30,8 @@
 
     if (!nameSample.test(usernameValue)) {
       setErrorView(username);
-      console.log(`hi low`);
     } else {
       setSuccessView(username);
-      console.log(`hi low now`);
     }
   }
 
@@ -101,9 +106,9 @@
   //   });
 
   //   myMap.geoObjects
-  //       .add(myPlacemark);
-  // }
+  // .add(myPlacemark);
+  //
 
-}());
+}(Inputmask));
 
 //# sourceMappingURL=main.js.map

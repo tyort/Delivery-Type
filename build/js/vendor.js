@@ -10852,6 +10852,7 @@
 
 	window.$ = jquery;
 
+
 	const yandexMapsScript = document.createElement(`script`);
 	const key = `6b492866-f739-4d69-9dbc-9ff50d70ea08`;
 
