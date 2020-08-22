@@ -10,14 +10,13 @@ const pointsList = pageDelivery.querySelector(`.pick-up-points`);
 let checkedPoints = [];
 let myMap = null;
 
-
 const pickupPoints = {
   'sand': [`Песчаная ул.`, [55.982502, 37.139599]],
   'underpine': [`Подсосенский пер.`, [55.977138, 37.152390]],
 };
 
 deliveryButtons.forEach((button) => {
-  button.addEventListener(`click`, (evt) => {
+  button.addEventListener(`click`, () => {
     deliveryButtons.forEach((btn) => {
       btn.style.backgroundColor = `#EDEEEF`;
       btn.style.color = `#999999`;
@@ -29,23 +28,19 @@ deliveryButtons.forEach((button) => {
 
 deliveryTypes.addEventListener(`click`, (evt) => {
   if (evt.target.textContent === `Самовывоз`) {
-    pickupAddresses.classList.toggle(`visually-hidden`, true);
-    form.classList.toggle(`visually-hidden`, false);
-  } else {
     pickupAddresses.classList.toggle(`visually-hidden`, false);
     form.classList.toggle(`visually-hidden`, true);
+  } else {
+    pickupAddresses.classList.toggle(`visually-hidden`, true);
+    form.classList.toggle(`visually-hidden`, false);
   }
 });
-
 
 window.$(document).ready(() => {
   window.$(phone).mask(`+7 (999) 999-99-99`);
 });
 
-
-form.addEventListener(`input`, (evt) => {
-  evt.preventDefault();
-
+form.addEventListener(`input`, () => {
   const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
   const addressSample = /^.{1,100}$/u;
 
