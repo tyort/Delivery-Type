@@ -7,6 +7,15 @@
   const phone = form.querySelector(`#block-phone`);
   const address = form.querySelector(`#block-address`);
   const deliveryButtons = pageDelivery.querySelectorAll(`.delivery-type`);
+  const pointsList = pageDelivery.querySelector(`.pick-up-points`);
+  let checkedPoints = [];
+  let myMap = null;
+
+
+  const pickupPoints = {
+    'sand': [`Песчаная ул.`, [55.982502, 37.139599]],
+    'underpine': [`Подсосенский пер.`, [55.977138, 37.152390]],
+  };
 
   deliveryButtons.forEach((button) => {
     button.addEventListener(`click`, () => {
@@ -44,25 +53,38 @@
     window.ymaps.ready(init);
   });
 
+  pointsList.addEventListener(`change`, (evt) => {
+    const checkedPointsSet = new Set(checkedPoints);
+
+    if (evt.target.checked) {
+      checkedPointsSet.add(evt.target.value);
+    } else {
+      checkedPointsSet.delete(evt.target.value);
+    }
+
+    checkedPoints = [...checkedPointsSet];
+    myMap.geoObjects.removeAll();
+
+    for (let i = 0; i < checkedPoints.length; i++) {
+      myMap.geoObjects
+          .add(new window.ymaps.Placemark(pickupPoints[checkedPoints[i]][1], {
+            balloonContent: `${pickupPoints[checkedPoints[i]][0]}`
+          }, {
+            iconLayout: `default#image`,
+            iconImageHref: `img/icon-pickup-point.svg`,
+            iconImageSize: [33.33, 40],
+            iconImageOffset: [-16.66, -40],
+          }));
+    }
+  });
+
   function init() {
-    let myMap = new window.ymaps.Map(`YMapsID`, {
-      center: [59.938635, 30.323118],
-      zoom: 15,
+    myMap = new window.ymaps.Map(`YMapsID`, {
+      center: [55.982700, 37.140552],
+      zoom: 13,
     }, {
       searchControlProvider: `yandex#search`
     });
-
-    const myPlacemark = new window.ymaps.Placemark([59.938635, 30.323118], {
-      hintContent: `Круизы в Антарктику`,
-    }, {
-      iconLayout: `default#image`,
-      iconImageHref: `img/icon-pickup-point.svg`,
-      iconImageSize: [18, 22],
-      iconImageOffset: [-9, -22],
-    });
-
-    myMap.geoObjects
-        .add(myPlacemark);
   }
 
   function checkInputValidity(inputName, sample, message) {
