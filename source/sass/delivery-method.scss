@@ -135,6 +135,7 @@
   font-size: 16px;
   color: #FFFFFF;
   margin-left: auto;
+  cursor: pointer;
 }
 
 // ____________________________________
@@ -143,6 +144,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.delivery-feature--addresses.visually-hidden {
+  display: none;
 }
 
 

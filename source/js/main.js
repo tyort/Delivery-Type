@@ -1,8 +1,10 @@
 const pageDelivery = document.querySelector(`.page-delivery`);
 const form = pageDelivery.querySelector(`form`);
+const pickupAddresses = pageDelivery.querySelector(`.delivery-feature--addresses`);
 const username = form.querySelector(`#block-name`);
 const phone = form.querySelector(`#block-phone`);
 const address = form.querySelector(`#block-address`);
+const deliveryTypes = pageDelivery.querySelector(`.delivery-types`);
 const deliveryButtons = pageDelivery.querySelectorAll(`.delivery-type`);
 const pointsList = pageDelivery.querySelector(`.pick-up-points`);
 let checkedPoints = [];
@@ -15,7 +17,7 @@ const pickupPoints = {
 };
 
 deliveryButtons.forEach((button) => {
-  button.addEventListener(`click`, () => {
+  button.addEventListener(`click`, (evt) => {
     deliveryButtons.forEach((btn) => {
       btn.style.backgroundColor = `#EDEEEF`;
       btn.style.color = `#999999`;
@@ -23,6 +25,16 @@ deliveryButtons.forEach((button) => {
     button.style.backgroundColor = `#FFFFFF`;
     button.style.color = `#215BF0`;
   });
+});
+
+deliveryTypes.addEventListener(`click`, (evt) => {
+  if (evt.target.textContent === `Самовывоз`) {
+    pickupAddresses.classList.toggle(`visually-hidden`, true);
+    form.classList.toggle(`visually-hidden`, false);
+  } else {
+    pickupAddresses.classList.toggle(`visually-hidden`, false);
+    form.classList.toggle(`visually-hidden`, true);
+  }
 });
 
 

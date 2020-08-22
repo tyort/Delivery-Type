@@ -1,0 +1,42 @@
+.pick-up-point input[type="checkbox"] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.pick-up-point input[type="checkbox"] + label {
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 120%;
+  cursor: pointer;
+
+  @media (max-width: 767px) {
+    width: 80%;
+  }
+}
+
+.pick-up-point input[type="checkbox"] + label::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #222222;
+  border-radius: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  margin-right: 5px;
+
+  @media (max-width: 767px) {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+}
+
+.pick-up-point input[type="checkbox"]:checked + label::before {
+  background: url(../img/internal-ellipse.svg) center no-repeat;
+  background-size: auto;
+}

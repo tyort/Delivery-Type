@@ -1,4 +1,23 @@
-@import "fonts.scss";
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto.woff2") format("woff2"),
+       url("../fonts/Roboto.woff") format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/RobotoBold.woff2") format("woff2"),
+       url("../fonts/RobotoBold.woff") format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/RobotoMedium.woff2") format("woff2"),
+       url("../fonts/RobotoMedium.woff") format("woff");
+  font-weight: 500px;
+}
 
 $bred: 0.5px solid red;
 
@@ -29,31 +48,32 @@ a {
   display: none;
 }
 
-button {
-  cursor: pointer;
+// button {
+//   cursor: pointer;
 
-  &:focus {
-    box-shadow: inset 0px 0px 1px 3px rgba(29, 65, 1, 0.753);
-  }
+//   &:focus {
+//     box-shadow: inset 0px 0px 1px 3px rgba(29, 65, 1, 0.753);
+//   }
 
-  &:hover {
-    color: #7b6be4;
-  }
+//   &:hover {
+//     color: #7b6be4;
+//   }
 
-  &:active {
-    color: #7b6be4;
-    /* offset-x | offset-y | blur-radius | spread-radius | color */
-    box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
-  }
+//   &:active {
+//     color: #7b6be4;
+//     /* offset-x | offset-y | blur-radius | spread-radius | color */
+//     box-shadow: inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425), inset 0px 0px 5px 5px rgba(45, 39, 124, 0.425);
+//   }
 
-  &:disabled {
-    background: rgba(130, 134, 125, 0.301);
-    color: #353538;
-    cursor: default;
-  }
-}
+//   &:disabled {
+//     background: rgba(130, 134, 125, 0.301);
+//     color: #353538;
+//     cursor: default;
+//   }
+// }
 
 @import "delivery-method.scss";
+@import "checkbox.scss";
 
 
 
