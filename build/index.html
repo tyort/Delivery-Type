@@ -15,12 +15,12 @@
   <div class="page-delivery__inner">
     <h2>Выберите способ доставки</h2>
     <ul class="delivery-types">
-      <li class="delivery-type">Доставка</li>
-      <li class="delivery-type">Самовывоз</li>
+      <li class="delivery-type"><p>Доставка</p></li>
+      <li class="delivery-type"><p>Самовывоз</p></li>
     </ul>
 
-    <form>
-      <div class="form-control">
+    <form class="delivery-feature visually-hidden">
+      <div class="form-control form-control--smaller">
         <label>Как вас зовут?</label>
         <input type="text" id="block-name" placeholder="Фамилия Имя Отчество" autocomplete="off" required="">
         <p>Пожалуйста, введите корректные данные</p>
@@ -29,7 +29,7 @@
         </svg>
       </div>
 
-      <div class="form-control">
+      <div class="form-control form-control--smaller">
         <label>Телефон</label>
         <input type="tel" id="block-phone" placeholder="+7 (___) ___-__-__" autocomplete="off" required="">
         <p>Пожалуйста, введите корректный телефон</p>
@@ -47,15 +47,32 @@
         </svg>
       </div>
 
-      <div class="form-control">
+      <div class="form-control form-control--comment">
         <label>Комментарий</label>
-        <textarea id="block-comment" cols="30" rows="10"></textarea>
+        <textarea id="block-comment" rows="7"></textarea>
       </div>
 
       <button type="submit">Оформить заказ</button>
     </form>
+    <div class="delivery-feature delivery-feature--addresses">
+
+      <div class="pick-up-points">
+
+        <div class="pick-up-point">
+          <input type="checkbox" value="sand" id="sandy-street">
+          <label for="sandy-street">Пункт выдачи заказов Песчаная ул., д. 13</label>
+        </div>
+
+        <div class="pick-up-point">
+          <input type="checkbox" value="underpine" id="underpine-street">
+          <label for="underpine-street">Пункт выдачи заказов Подсосенский пер., д. 11</label>
+        </div>
+
+      <div>
+      <div class="map-view" id="YMapsID"></div>
+    </div>
   </div>
-</div>
+</div></div></div>
     </main>
     <script src="js/vendor.js"></script>
     <script src="js/main.js"></script>

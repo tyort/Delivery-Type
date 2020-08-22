@@ -1,9 +1,11 @@
 .page-delivery {
   width: 100%;
+  padding: 80px 15px 50px;
+  background: #E5E5E5;
 }
 
 .page-delivery__inner {
-  border: $bred;
+  // border: $bred;
   width: 100%;
   max-width: 1032px;
   margin: 0 auto;
@@ -16,26 +18,76 @@
   font-weight: normal;
   font-size: 32px;
   line-height: 70%;
+  margin-bottom: 58px;
 }
 
-.delivery__types {
+.delivery-types {
   display: flex;
+}
+
+.delivery-type {
+  height: 48px;
+  padding: 0 40px;
+  background: #EDEEEF;
+  margin-right: 8px;
+  border-radius: 5px 5px 0 0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: #999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.delivery-type:first-child {
+  color: #215BF0;
+  background: #FFFFFF;
+}
+
+.delivery-feature {
+  background: #FFFFFF;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 45px 40px 48px;
+}
+
+.page-delivery__inner form.visually-hidden {
+  display: none;
 }
 
 .form-control {
-  border: $bred;
+  // border: $bred;
   position: relative;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20px;
+  width: 100%;
+  padding-bottom: 37px;
+}
+
+.form-control--comment {
+  padding-bottom: 45px;
+}
+
+.form-control--smaller {
+  width: calc((100% - 24px) / 2);
 }
 
 .form-control label {
-  margin-bottom: 20px;
+  margin-bottom: 13px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
 }
 
 .form-control input {
   display: block;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
   border: 1px solid #999999;
   border-radius: 4px;
   padding-left: 17px;
@@ -50,8 +102,11 @@
 .form-control p {
   position: absolute;
   visibility: hidden;
-  bottom: 0;
+  bottom: 18px;
   left: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
   color: #F12828;
 }
 
@@ -61,6 +116,8 @@
 
 .form-control .form-control__img {
   position: absolute;
+  top: 40px;
+  right: 16px;
   visibility: hidden;
 }
 
@@ -77,4 +134,25 @@
   font-weight: normal;
   font-size: 16px;
   color: #FFFFFF;
+  margin-left: auto;
+}
+
+// ____________________________________
+
+.delivery-feature--addresses {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pick-up-points {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.map-view {
+  margin-top: 26px;
+  height: 560px;
+  width: 100%;
 }
