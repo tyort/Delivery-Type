@@ -1670,8 +1670,11 @@
 	const deliveryTypes = pageDelivery.querySelector(`.delivery-types`);
 	const deliveryButtons = pageDelivery.querySelectorAll(`.delivery-type`);
 	const pointsList = pageDelivery.querySelector(`.pick-up-points`);
+	const phoneElement = document.querySelectorAll(`.form-control`)[1];
+	const phoneInput = phoneElement.querySelector(`input`);
 	let checkedPoints = [];
 	let myMap = null;
+	let mistakes = new Set();
 
 	const pickupPoints = {
 	  'sand': [`Песчаная ул.`, [55.982502, 37.139599]],
@@ -1686,6 +1689,14 @@
 	  return /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/g.test(value);
 	});
 
+	window.$(form).validate({
+	  rules: {
+	    phone: {
+	      checkMask: true
+	    }
+	  }
+	});
+
 	deliveryButtons.forEach((button) => {
 	  button.addEventListener(`click`, () => {
 	    deliveryButtons.forEach((btn) => {
@@ -1698,9 +1709,6 @@
 	});
 
 	phone.addEventListener(`blur`, () => {
-	  const phoneElement = document.querySelectorAll(`.form-control`)[1];
-	  const phoneInput = phoneElement.querySelector(`input`);
-
 	  if (phoneInput.className === `error`) {
 	    phoneElement.querySelector(`p`).style.visibility = `visible`;
 	    phoneElement.querySelector(`svg`).style.visibility = `visible`;
@@ -1708,6 +1716,11 @@
 	    phoneElement.querySelector(`p`).style.visibility = `hidden`;
 	    phoneElement.querySelector(`svg`).style.visibility = `hidden`;
 	  }
+	});
+
+	phone.addEventListener(`focus`, () => {
+	  phoneElement.querySelector(`p`).style.visibility = `hidden`;
+	  phoneElement.querySelector(`svg`).style.visibility = `hidden`;
 	});
 
 	deliveryTypes.addEventListener(`click`, (evt) => {
@@ -1724,14 +1737,12 @@
 	  const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
 	  const addressSample = /^.{1,100}$/u;
 
-	  let mistakes = [];
+	  checkInputValidity(username, nameSample, `Скажи, как зовут то ?)`);
+	  checkInputValidity(address, addressSample, `Спорим, угадаю где живешь ?)`);
 
-	  checkInputValidity(mistakes, username, nameSample, `Скажи, как зовут то ?)`);
-	  checkInputValidity(mistakes, address, addressSample, `Спорим, угадаю где живешь ?)`);
-
-	  if (mistakes.includes(false) && !buttonForm.hasAttribute(`disabled`)) {
+	  if (mistakes.has(false) && !buttonForm.hasAttribute(`disabled`) || phoneInput.className !== `valid`) {
 	    buttonForm.setAttribute(`disabled`, `disabled`);
-	  } else if (!mistakes.includes(false)) {
+	  } else if (!mistakes.has(false) && phoneInput.className === `valid`) {
 	    buttonForm.removeAttribute(`disabled`);
 	  }
 	});
@@ -1740,7 +1751,6 @@
 	  evt.preventDefault();
 	  form.reset();
 
-	  const phoneElement = document.querySelectorAll(`.form-control`)[1];
 	  phoneElement.querySelector(`p`).style.visibility = `hidden`;
 	  phoneElement.querySelector(`svg`).style.visibility = `hidden`;
 	});
@@ -1790,26 +1800,18 @@
 	  });
 	}
 
-	function checkInputValidity(mistakes, inputName, sample, message) {
+	function checkInputValidity(inputName, sample, message) {
 	  const value = inputName.value.trim();
 
 	  if (!sample.test(value)) {
 	    inputName.setCustomValidity(message);
-	    mistakes.push(false);
+	    mistakes.add(false);
 
 	  } else {
 	    inputName.setCustomValidity(``);
+	    mistakes.delete(false);
 	  }
 	}
-
-
-	window.$(form).validate({
-	  rules: {
-	    phone: {
-	      checkMask: true
-	    }
-	  }
-	});
 
 }());
 
