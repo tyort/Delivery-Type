@@ -8,9 +8,10 @@
   display: inline-flex;
   align-items: center;
   user-select: none;
+  font-style: normal;
   font-weight: normal;
-  font-size: 10px;
-  line-height: 120%;
+  font-size: 16px;
+  line-height: 150%;
   cursor: pointer;
 
   @media (max-width: 767px) {
@@ -27,13 +28,7 @@
   border-radius: 50%;
   flex-shrink: 0;
   flex-grow: 0;
-  margin-right: 5px;
-
-  @media (max-width: 767px) {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-  }
+  margin-right: 6px;
 }
 
 .pick-up-point input[type="checkbox"]:checked + label::before {
