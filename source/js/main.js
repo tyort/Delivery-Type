@@ -12,7 +12,6 @@ const deliveryTypes = pageDelivery.querySelector(`.delivery-types`);
 const deliveryButtons = pageDelivery.querySelectorAll(`.delivery-type`);
 const pointsList = pageDelivery.querySelector(`.pick-up-points`);
 const phoneElement = document.querySelectorAll(`.form-control`)[1];
-const phoneInput = phoneElement.querySelector(`input`);
 const phoneSample = /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/g;
 const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
 const addressSample = /^.{1,100}$/u;
@@ -53,20 +52,17 @@ deliveryButtons.forEach((button) => {
 });
 
 phone.addEventListener(`blur`, () => {
-  if (phoneInput.className === `error`) {
+  phoneElement.querySelector(`p`).style.visibility = `hidden`;
+  phoneElement.querySelector(`svg`).style.visibility = `hidden`;
+  mistakes.delete(`phoneMistake`);
+
+  if (phone.className !== `valid`) {
     phoneElement.querySelector(`p`).style.visibility = `visible`;
     phoneElement.querySelector(`svg`).style.visibility = `visible`;
     mistakes.add(`phoneMistake`);
-
-  } else {
-    phoneElement.querySelector(`p`).style.visibility = `hidden`;
-    phoneElement.querySelector(`svg`).style.visibility = `hidden`;
-    mistakes.delete(`phoneMistake`);
   }
 
   checkFormValidity();
-
-  console.log(phone.value);
 });
 
 phone.addEventListener(`focus`, () => {
@@ -96,7 +92,7 @@ form.addEventListener(`submit`, (evt) => {
   phoneElement.querySelector(`p`).style.visibility = `hidden`;
   phoneElement.querySelector(`svg`).style.visibility = `hidden`;
   buttonForm.setAttribute(`disabled`, `disabled`);
-  phoneInput.className = ``;
+  phone.className = ``;
 });
 
 window.addEventListener(`mapWasLoaded`, () => {
@@ -158,9 +154,13 @@ function checkInputValidity(inputName, sample, message) {
 }
 
 function checkFormValidity() {
-  if (mistakes.size > 0 && !buttonForm.hasAttribute(`disabled`) || phoneInput.className !== `valid`) {
-    buttonForm.setAttribute(`disabled`, `disabled`);
-  } else if (mistakes.size === 0 && phoneInput.className === `valid`) {
+  const isValuesExist = !!address.value && !!username.value;
+
+  if (!buttonForm.hasAttribute(`disabled`)) {
+    if (mistakes.size > 0 || !phone.className === `valid`) {
+      buttonForm.setAttribute(`disabled`, `disabled`);
+    }
+  } else if (isValuesExist && mistakes.size === 0 && phone.className === `valid` && buttonForm.hasAttribute(`disabled`)) {
     buttonForm.removeAttribute(`disabled`);
   }
 }
