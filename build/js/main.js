@@ -3,8 +3,9 @@
 
   const pageDelivery = document.querySelector(`.page-delivery`);
   const form = pageDelivery.querySelector(`form`);
-  const button = pageDelivery.querySelector(`button[type="submit"]`);
+  const buttonForm = pageDelivery.querySelector(`button[type="submit"]`);
   const pickupAddresses = pageDelivery.querySelector(`.delivery-feature--addresses`);
+  const buttonMap = pickupAddresses.querySelector(`button`);
   const username = form.querySelector(`#block-name`);
   const phone = form.querySelector(`#block-phone`);
   const address = form.querySelector(`#block-address`);
@@ -18,6 +19,10 @@
     'sand': [`Песчаная ул.`, [55.982502, 37.139599]],
     'underpine': [`Подсосенский пер.`, [55.977138, 37.152390]],
   };
+
+  window.$(document).ready(() => {
+    window.$(phone).mask(`+7 (999) 999-99-99`);
+  });
 
   deliveryButtons.forEach((button) => {
     button.addEventListener(`click`, () => {
@@ -40,23 +45,19 @@
     }
   });
 
-  window.$(document).ready(() => {
-    window.$(phone).mask(`+7 (999) 999-99-99`);
-  });
-
   form.addEventListener(`input`, () => {
     const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
     const addressSample = /^.{1,100}$/u;
 
-    let sdfsdfdsf = [];
+    let mistakes = [];
 
-    checkInputValidity(sdfsdfdsf, username, nameSample, `Скажи, как зовут то ?)`);
-    checkInputValidity(sdfsdfdsf, address, addressSample, `Спорим, угадаю где живешь ?)`);
+    checkInputValidity(mistakes, username, nameSample, `Скажи, как зовут то ?)`);
+    checkInputValidity(mistakes, address, addressSample, `Спорим, угадаю где живешь ?)`);
 
-    if (sdfsdfdsf.includes(false) && !button.hasAttribute(`disabled`)) {
-      button.setAttribute(`disabled`, `disabled`);
-    } else if (!sdfsdfdsf.includes(false)) {
-      button.removeAttribute(`disabled`);
+    if (mistakes.includes(false) && !buttonForm.hasAttribute(`disabled`)) {
+      buttonForm.setAttribute(`disabled`, `disabled`);
+    } else if (!mistakes.includes(false)) {
+      buttonForm.removeAttribute(`disabled`);
     }
   });
 
@@ -79,6 +80,13 @@
     }
 
     checkedPoints = [...checkedPointsSet];
+
+    if (checkedPoints.length === 0 && !buttonMap.hasAttribute(`disabled`)) {
+      buttonMap.setAttribute(`disabled`, `disabled`);
+    } else {
+      buttonMap.removeAttribute(`disabled`);
+    }
+
     myMap.geoObjects.removeAll();
 
     for (let i = 0; i < checkedPoints.length; i++) {

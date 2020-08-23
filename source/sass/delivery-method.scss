@@ -5,7 +5,6 @@
 }
 
 .page-delivery__inner {
-  // border: $bred;
   width: 100%;
   max-width: 1032px;
   margin: 0 auto;
@@ -40,6 +39,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    padding: 0 15px;
+    font-size: 14px;
+  }
 }
 
 .delivery-type:first-child {
@@ -53,6 +57,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 45px 40px 48px;
+
+  @media (max-width: 767px) {
+    padding: 20px;
+  }
 }
 
 .page-delivery__inner form.visually-hidden {
@@ -60,7 +68,6 @@
 }
 
 .form-control {
-  // border: $bred;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -74,6 +81,10 @@
 
 .form-control--smaller {
   width: calc((100% - 24px) / 2);
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .form-control label {
@@ -147,8 +158,6 @@
   }
 }
 
-// ____________________________________
-
 .delivery-feature--addresses {
   flex-direction: column;
   justify-content: flex-start;
@@ -170,6 +179,11 @@
 
 .pick-up-point {
   width: calc((100% - 24px) / 2);
+
+  @media (max-width: 767px) {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 .page-delivery .map-view {
@@ -177,4 +191,8 @@
   margin-bottom: 40px;
   height: 560px;
   width: 100%;
+
+  @media (max-width: 767px) {
+    height: 350px;
+  }
 }
