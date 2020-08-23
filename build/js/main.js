@@ -3,6 +3,7 @@
 
   const pageDelivery = document.querySelector(`.page-delivery`);
   const form = pageDelivery.querySelector(`form`);
+  const button = pageDelivery.querySelector(`button[type="submit"]`);
   const pickupAddresses = pageDelivery.querySelector(`.delivery-feature--addresses`);
   const username = form.querySelector(`#block-name`);
   const phone = form.querySelector(`#block-phone`);
@@ -47,8 +48,16 @@
     const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
     const addressSample = /^.{1,100}$/u;
 
-    checkInputValidity(username, nameSample, `Скажи, как зовут то ?)`);
-    checkInputValidity(address, addressSample, `Спорим, угадаю где живешь ?)`);
+    let sdfsdfdsf = [];
+
+    checkInputValidity(sdfsdfdsf, username, nameSample, `Скажи, как зовут то ?)`);
+    checkInputValidity(sdfsdfdsf, address, addressSample, `Спорим, угадаю где живешь ?)`);
+
+    if (sdfsdfdsf.includes(false) && !button.hasAttribute(`disabled`)) {
+      button.setAttribute(`disabled`, `disabled`);
+    } else if (!sdfsdfdsf.includes(false)) {
+      button.removeAttribute(`disabled`);
+    }
   });
 
   form.addEventListener(`submit`, (evt) => {
@@ -94,11 +103,12 @@
     });
   }
 
-  function checkInputValidity(inputName, sample, message) {
+  function checkInputValidity(mistakes, inputName, sample, message) {
     const value = inputName.value.trim();
 
     if (!sample.test(value)) {
       inputName.setCustomValidity(message);
+      mistakes.push(false);
 
     } else {
       inputName.setCustomValidity(``);

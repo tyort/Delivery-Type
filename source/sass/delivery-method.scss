@@ -136,6 +136,15 @@
   color: #FFFFFF;
   margin-left: auto;
   cursor: pointer;
+
+  &:disabled {
+    background-color: #EDEEEF;
+    color: #999999;
+  }
+
+  &:active {
+    background-color: #0F41C4;
+  }
 }
 
 // ____________________________________
@@ -165,5 +174,5 @@
 .page-delivery .map-view {
   margin-top: 26px;
   height: 560px;
-  width: 952px;
+  width: 100%;
 }
