@@ -1,3 +1,5 @@
+import '../../node_modules/jquery-validation/dist/jquery.validate';
+
 const pageDelivery = document.querySelector(`.page-delivery`);
 const form = pageDelivery.querySelector(`form`);
 const buttonForm = pageDelivery.querySelector(`button[type="submit"]`);
@@ -18,7 +20,11 @@ const pickupPoints = {
 };
 
 window.$(document).ready(() => {
-  window.$(phone).mask(`+7 (999) 999-99-99`);
+  window.$(phone).mask(`+7 (999) 999-99-99`, {autoclear: false});
+});
+
+window.$.validator.addMethod(`checkMask`, function (value) {
+  return /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/g.test(value);
 });
 
 deliveryButtons.forEach((button) => {
@@ -120,4 +126,18 @@ function checkInputValidity(mistakes, inputName, sample, message) {
   }
 }
 
+
+window.$(form).validate({
+  rules: {
+    phone: {
+      checkMask: true
+    }
+  },
+
+  messages: {
+    phone: {
+      checkMask: `Введите полный номер телефона`
+    }
+  }
+});
 
