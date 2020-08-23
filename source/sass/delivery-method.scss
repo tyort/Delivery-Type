@@ -121,18 +121,12 @@
   color: #F12828;
 }
 
-.form-control #block-phone-error {
+.form-control label.error {
   position: absolute;
-  bottom: 18px;
-  left: 0;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  color: #F12828;
-  margin-bottom: 0;
+  visibility: hidden;
 }
 
-.form-control input:invalid:not(:focus):not(:placeholder-shown) + p {
+.form-control input:invalid:not(:focus):not(:placeholder-shown) ~ p {
   visibility: visible;
 }
 
@@ -144,10 +138,6 @@
 }
 
 .form-control input:invalid:not(:focus):not(:placeholder-shown) ~ .form-control__img {
-  visibility: visible;
-}
-
-.form-control label#block-phone-error ~ .form-control__img {
   visibility: visible;
 }
 
@@ -211,3 +201,4 @@
     height: 350px;
   }
 }
+

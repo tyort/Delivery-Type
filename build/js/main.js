@@ -1697,6 +1697,19 @@
 	  });
 	});
 
+	phone.addEventListener(`blur`, () => {
+	  const phoneElement = document.querySelectorAll(`.form-control`)[1];
+	  const phoneInput = phoneElement.querySelector(`input`);
+
+	  if (phoneInput.className === `error`) {
+	    phoneElement.querySelector(`p`).style.visibility = `visible`;
+	    phoneElement.querySelector(`svg`).style.visibility = `visible`;
+	  } else {
+	    phoneElement.querySelector(`p`).style.visibility = `hidden`;
+	    phoneElement.querySelector(`svg`).style.visibility = `hidden`;
+	  }
+	});
+
 	deliveryTypes.addEventListener(`click`, (evt) => {
 	  if (evt.target.textContent === `Самовывоз`) {
 	    pickupAddresses.classList.toggle(`visually-hidden`, false);
@@ -1726,6 +1739,10 @@
 	form.addEventListener(`submit`, (evt) => {
 	  evt.preventDefault();
 	  form.reset();
+
+	  const phoneElement = document.querySelectorAll(`.form-control`)[1];
+	  phoneElement.querySelector(`p`).style.visibility = `hidden`;
+	  phoneElement.querySelector(`svg`).style.visibility = `hidden`;
 	});
 
 	window.addEventListener(`mapWasLoaded`, () => {
@@ -1790,12 +1807,6 @@
 	  rules: {
 	    phone: {
 	      checkMask: true
-	    }
-	  },
-
-	  messages: {
-	    phone: {
-	      checkMask: `Введите полный номер телефона`
 	    }
 	  }
 	});
