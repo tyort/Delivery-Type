@@ -13,6 +13,9 @@ const deliveryButtons = pageDelivery.querySelectorAll(`.delivery-type`);
 const pointsList = pageDelivery.querySelector(`.pick-up-points`);
 const phoneElement = document.querySelectorAll(`.form-control`)[1];
 const phoneInput = phoneElement.querySelector(`input`);
+const phoneSample = /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/g;
+const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
+const addressSample = /^.{1,100}$/u;
 let checkedPoints = [];
 let myMap = null;
 let mistakes = new Set();
@@ -27,7 +30,7 @@ window.$(document).ready(() => {
 });
 
 window.$.validator.addMethod(`checkMask`, function (value) {
-  return /^\+7\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/g.test(value);
+  return phoneSample.test(value);
 });
 
 window.$(form).validate({
@@ -53,10 +56,17 @@ phone.addEventListener(`blur`, () => {
   if (phoneInput.className === `error`) {
     phoneElement.querySelector(`p`).style.visibility = `visible`;
     phoneElement.querySelector(`svg`).style.visibility = `visible`;
+    mistakes.add(`phoneMistake`);
+
   } else {
     phoneElement.querySelector(`p`).style.visibility = `hidden`;
     phoneElement.querySelector(`svg`).style.visibility = `hidden`;
+    mistakes.delete(`phoneMistake`);
   }
+
+  checkFormValidity();
+
+  console.log(phone.value);
 });
 
 phone.addEventListener(`focus`, () => {
@@ -75,25 +85,18 @@ deliveryTypes.addEventListener(`click`, (evt) => {
 });
 
 form.addEventListener(`input`, () => {
-  const nameSample = /^[а-яА-ЯёЁ -]{1,50}$/u;
-  const addressSample = /^.{1,100}$/u;
-
   checkInputValidity(username, nameSample, `Скажи, как зовут то ?)`);
   checkInputValidity(address, addressSample, `Спорим, угадаю где живешь ?)`);
-
-  if (mistakes.has(false) && !buttonForm.hasAttribute(`disabled`) || phoneInput.className !== `valid`) {
-    buttonForm.setAttribute(`disabled`, `disabled`);
-  } else if (!mistakes.has(false) && phoneInput.className === `valid`) {
-    buttonForm.removeAttribute(`disabled`);
-  }
+  checkFormValidity();
 });
 
 form.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
   form.reset();
-
   phoneElement.querySelector(`p`).style.visibility = `hidden`;
   phoneElement.querySelector(`svg`).style.visibility = `hidden`;
+  buttonForm.setAttribute(`disabled`, `disabled`);
+  phoneInput.className = ``;
 });
 
 window.addEventListener(`mapWasLoaded`, () => {
@@ -146,11 +149,19 @@ function checkInputValidity(inputName, sample, message) {
 
   if (!sample.test(value)) {
     inputName.setCustomValidity(message);
-    mistakes.add(false);
+    mistakes.add(inputName.id);
 
   } else {
     inputName.setCustomValidity(``);
-    mistakes.delete(false);
+    mistakes.delete(inputName.id);
+  }
+}
+
+function checkFormValidity() {
+  if (mistakes.size > 0 && !buttonForm.hasAttribute(`disabled`) || phoneInput.className !== `valid`) {
+    buttonForm.setAttribute(`disabled`, `disabled`);
+  } else if (mistakes.size === 0 && phoneInput.className === `valid`) {
+    buttonForm.removeAttribute(`disabled`);
   }
 }
 
