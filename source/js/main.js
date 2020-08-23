@@ -96,7 +96,21 @@ form.addEventListener(`submit`, (evt) => {
 });
 
 window.addEventListener(`mapWasLoaded`, () => {
-  window.ymaps.ready(init);
+  if (window.innerWidth >= 728) {
+    window.ymaps.ready(initMapScrollOn);
+    return;
+  }
+
+  window.ymaps.ready(initMapScrollOff);
+});
+
+window.addEventListener(`resize`, () => {
+  if (window.innerWidth >= 728) {
+    myMap.behaviors.enable(`scrollZoom`);
+    return;
+  }
+
+  myMap.behaviors.disable(`scrollZoom`);
 });
 
 pointsList.addEventListener(`change`, (evt) => {
@@ -131,7 +145,18 @@ pointsList.addEventListener(`change`, (evt) => {
   }
 });
 
-function init() {
+function initMapScrollOff() {
+  myMap = new window.ymaps.Map(`YMapsID`, {
+    center: [55.982700, 37.140552],
+    zoom: 13,
+  }, {
+    searchControlProvider: `yandex#search`
+  });
+
+  myMap.behaviors.disable(`scrollZoom`);
+}
+
+function initMapScrollOn() {
   myMap = new window.ymaps.Map(`YMapsID`, {
     center: [55.982700, 37.140552],
     zoom: 13,
